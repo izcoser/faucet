@@ -1,0 +1,58 @@
+body {
+    background-attachment: fixed, fixed;
+    background-color: #F7F7F7;
+    background-image: url('../gif/yuri.gif'), url('../backgrounds/bg2.png');
+    background-position: 100% 100%, top left;
+    background-repeat: no-repeat, repeat;
+    color: #333;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    height: 100%;
+    line-height: 20px;
+    margin: 0;
+    padding-top: 20px;
+    padding-bottom: 40px;
+}
+
+.container{
+    margin: 60px 0;
+    text-align: center;
+}
+
+.greeting{
+    margin-bottom: 3%;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+input, select {
+    background-color: #eeeeee;
+    border-color: #333;
+    border: groove;
+}
+
+select {
+    height: 2em;
+    width: 6em;
+}
+
+input[type="button"] {
+    height: 2em;
+    width: 8em;
+}
+
+input[type="text"] {
+    height: 1.55em;
+    width: 44ch;
+}
+
+.response {
+    margin-top: 3%;
+    font-size: x-large;
+    font-weight: bold;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}

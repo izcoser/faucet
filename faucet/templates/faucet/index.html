@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Unifaux - Ethereum Testnet Faucet</title>
+    {% load static %}
+    <script src="{% static 'faucet/js/main.js' %}"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'faucet/css/style.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <div class="greeting">
+        <!--Welcome to Multifaucet - a faucet for Ethereum testnets and Polygon.!-->
+        Multifaucet
+      </div>
+      <input type="text" placeholder="Your Ethereum address goes here." id="to_address">
+      <select name="network" id="network">
+        <option value="Görli">Görli</option>
+        <option value="Kovan">Kovan</option>
+        <option value="Rinkeby">Rinkeby</option>
+        <option value="Ropsten">Ropsten</option>
+        <option value="Polygon">Polygon</option>
+      </select>
+      <input type="button" name="give" value="Give me Ether!" onclick="sendEth()">  
+    </div>
+    {% csrf_token %}
+  </body>
+</html>
