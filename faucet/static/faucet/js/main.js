@@ -16,7 +16,7 @@ function disableButton(){
 function enableButton(){
     giveButton.disabled = false;
     const network = document.getElementById('network').value;
-    
+    giveButton.value = 'Give me ' + (network.startsWith('Poly') ? 'MATIC' : 'Ether') + '!'
 }
 
 function sendEth(){
@@ -26,7 +26,8 @@ function sendEth(){
     const to_address = document.getElementById('to_address').value;
     const network = document.getElementById('network').value;
     if(!to_address){
-        console.log('You must provide a valid Ethereum address!');
+        displayError('You must provide a valid Ethereum address!', -1);
+        enableButton();
         return;
     }
 
@@ -86,7 +87,19 @@ function displayError(message, code){
     else{
         displayDiv.innerText = message;
     }
+
+    const timeBar = document.createElement('div');
+    timeBar.setAttribute('class', 'responseBar');
+    timeBar.style.width = "100%";
+    setInterval(() => {
+        let w = Number(timeBar.style.width.replace('%', ''));
+        w -= 0.5;
+        timeBar.style.width = w + '%';
+    }, 50);
+    displayDiv.appendChild(timeBar);
+
     giveButton.after(displayDiv);
+    setTimeout(() => displayDiv.remove(), 10100);
 }
 
 function getCookie(name) {
