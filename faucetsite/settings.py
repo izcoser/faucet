@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 
+PK = os.environ.get('faucet_pk', '')
+FROM_ADDRESS = os.environ.get('faucet_from', '')
+assert len(PK) > 0 and len(FROM_ADDRESS) > 0, 'You must set the private key and address variables.'
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

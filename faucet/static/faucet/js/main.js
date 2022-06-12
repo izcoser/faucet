@@ -32,7 +32,15 @@ function sendEth(){
             const value = response['value'];
             const networkText = response['network'];
             const Txhash = response['tx_hash'];
-            displayHash(value, networkText, Txhash);
+            const success = response['success'];
+            const message = response['message'];
+            const code = response['code'];
+            if(success){
+                displayHash(value, networkText, Txhash);
+            }
+            else{
+                displayError(message, code);
+            }
             enableButton();
         }
     }
@@ -48,15 +56,28 @@ function sendEth(){
 }
 
 function displayHash(value, network, Txhash){
+    const polygon = network.startsWith('polygon');
     const displayDiv = document.createElement('div');
     displayDiv.setAttribute('class', 'response');
     const anchor = document.createElement('a');
-    const link = 'https://' + network + '.etherscan.io/tx/' + Txhash;
+    const link = polygon ? ('https://mumbai.polygonscan.com/tx/' + Txhash) : ('https://' + network + '.etherscan.io/tx/' + Txhash);
     anchor.setAttribute('href', link);
     anchor.setAttribute('target', '_blank');
     anchor.innerText = 'View Transaction';
-    displayDiv.innerText = 'Sent ' + value + ' ETH! ';
+    displayDiv.innerText = 'Sent ' + value + (polygon ? ' MATIC' : ' ETH') + ' ! ';
     displayDiv.appendChild(anchor); 
+    giveButton.after(displayDiv);
+}
+
+function displayError(message, code){
+    const displayDiv = document.createElement('div');
+    displayDiv.setAttribute('class', 'response');
+    if (message.startsWith('already known')){
+        displayDiv.innerText = 'Sorry! A transaction is under way. Please try again later.';
+    }
+    else if(message.startsWith('insufficient')){
+        displayDiv.innerText = 'Sorry! We\'re out of funds.';
+    }
     giveButton.after(displayDiv);
 }
 
