@@ -1,3 +1,13 @@
+@font-face {
+    font-family: "AnimeAce2-bold";
+    src: url('../fonts/animeace2_bld.ttf') format("truetype");
+}
+
+@font-face {
+    font-family: "AnimeAce2";
+    src: url('../fonts/animeace2_reg.ttf') format("truetype");
+}
+
 body {
     background-attachment: fixed, fixed;
     background-color: #F7F7F7;
@@ -21,7 +31,7 @@ body {
 
 .greeting{
     margin-bottom: 3%;
-    font-size: x-large;
+    font-size: xxx-large;
     font-weight: bold;
 }
 

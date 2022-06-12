@@ -1,8 +1,12 @@
 var giveButton;
-
 document.addEventListener("DOMContentLoaded", function (event) {
     giveButton = document.getElementsByName('give')[0];
+    const networkSelect = document.getElementById('network');
+    networkSelect.addEventListener('change', (event) => {
+        giveButton.value = 'Give me ' + (event.target.value.startsWith('Poly') ? 'MATIC' : 'Ether') + '!'
+      });
 });
+
 
 function disableButton(){
     giveButton.disabled = true;
@@ -11,7 +15,8 @@ function disableButton(){
 
 function enableButton(){
     giveButton.disabled = false;
-    giveButton.value = 'Give me Ether!'
+    const network = document.getElementById('network').value;
+    
 }
 
 function sendEth(){
@@ -64,7 +69,7 @@ function displayHash(value, network, Txhash){
     anchor.setAttribute('href', link);
     anchor.setAttribute('target', '_blank');
     anchor.innerText = 'View Transaction';
-    displayDiv.innerText = 'Sent ' + value + (polygon ? ' MATIC' : ' ETH') + ' ! ';
+    displayDiv.innerText = 'Sent ' + value + (polygon ? ' MATIC' : ' ETH') + '! ';
     displayDiv.appendChild(anchor); 
     giveButton.after(displayDiv);
 }
@@ -77,6 +82,9 @@ function displayError(message, code){
     }
     else if(message.startsWith('insufficient')){
         displayDiv.innerText = 'Sorry! We\'re out of funds.';
+    }
+    else{
+        displayDiv.innerText = message;
     }
     giveButton.after(displayDiv);
 }

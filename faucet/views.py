@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from web3 import Web3
 from django.conf import settings
+from ipware import get_client_ip
+from faucet.models import Transactions
+from datetime import datetime, timezone, timedelta
 import json
 
 chainIds = {'ropsten': 3, 'rinkeby': 4, 'goerli': 5, 'kovan': 42, 'polygon-mumbai': 80001}
@@ -32,6 +35,24 @@ def send_eth(request):
     print(nonce)
     ether_value = 0.001
     value = web3.toWei(ether_value, 'ether')
+    
+    client_ip, _ = get_client_ip(request)
+    if client_ip is None:
+        client_ip = '0.0.0.0'
+
+    query = Transactions.objects.filter(ip=client_ip, network=network).order_by('-date') | \
+            Transactions.objects.filter(address=to_address, network=network).order_by('-date')
+
+    if len(query) > 0:
+        tran = query.first()
+        td = datetime.now(timezone.utc) - tran.date
+        if td.days == 0 and td.seconds < 3600:
+            return JsonResponse({'value': '', 'network': '', 'tx_hash': '', 'success': False, \
+            'message': 'You have to wait at least one hour per request per network.', 'code': -1})
+
+    if not web3.isAddress(to_address):
+        return JsonResponse({'value': '', 'network': '', 'tx_hash': '', 'success': False, \
+            'message': 'Invalid address.', 'code': -2})
 
     tx = {
         'nonce': nonce,
@@ -54,4 +75,6 @@ def send_eth(request):
         return JsonResponse({'value': ether_value, 'network': network, 'tx_hash': '', 'success': False, 'message': e.args[0]['message'], 'code': e.args[0]['code']})
 
 
+    tran = Transactions(ip=client_ip, network=network, network_id=chainIds[network], address=to_address)
+    tran.save()
     return JsonResponse({'value': ether_value, 'network': network, 'tx_hash': tx_hash.hex(), 'success': True, 'message': '', 'code': ''})
