@@ -1,20 +1,4 @@
-@font-face {
-    font-family: "AnimeAce2-bold";
-    src: url('../fonts/animeace2_bld.ttf') format("truetype");
-}
-
-@font-face {
-    font-family: "AnimeAce2";
-    src: url('../fonts/animeace2_reg.ttf') format("truetype");
-}
-
 body {
-    background-attachment: fixed, fixed, fixed;
-    background-color: #F7F7F7;
-    background-image: url('../gif/yuri.gif'), url('../backgrounds/bg2.png');
-    background-position: 50% 100%, top left;
-    background-repeat: no-repeat, repeat;
-    color: #333;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
     height: 100%;
@@ -22,6 +6,8 @@ body {
     margin: 0;
     padding-top: 20px;
     padding-bottom: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .container{
@@ -33,12 +19,6 @@ body {
     margin-bottom: 3%;
     font-size: xxx-large;
     font-weight: bold;
-}
-
-input, select {
-    background-color: #eeeeee;
-    border-color: #333;
-    border: groove;
 }
 
 select {
@@ -63,17 +43,13 @@ input[type="text"] {
 .response {
     font-size: x-large;
     font-weight: bold;
-    /*background-color: #CCE8ED;*/
+    border-radius: 4px;
     margin: 3% auto;
     width: 850px;
     padding: 15px;
-
-    background-color: #db9190;
-    border: 4px solid #d9716f;
 }
 
 .responseBar{
-    background-color: #333;
     height: 5px;
     position: relative;
     top: 10px;
@@ -82,5 +58,14 @@ input[type="text"] {
 
 a {
     text-decoration: none;
-    color: cornflowerblue;
+}
+
+.toggleButton{
+    width: 2ch;
+    border-radius: 4px;
+    text-align: center;
+}
+
+.toggleButton:hover{
+    cursor: pointer;
 }

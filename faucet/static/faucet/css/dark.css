@@ -1,0 +1,35 @@
+body {
+    background-attachment: fixed;
+    background-color: #080808;
+    background-image: url('../backgrounds/bgdark.png');
+    background-position: top left;
+    background-repeat: repeat;
+    color: #ccc;
+}
+
+input, select {
+    background-color: #111111;
+    border-color: #ccc;
+    border: groove;
+    color: #ccc;
+}
+
+.response {
+    background-color: #331712;
+    border: 2px solid #c6947b;
+}
+
+.responseBar{
+    background-color: #ccc;
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
+
+.toggleButton{
+    color: #ccc;
+    background-color: #331712;
+    border: 2px solid #c6947b;
+}

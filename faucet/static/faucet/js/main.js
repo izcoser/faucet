@@ -5,6 +5,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
     networkSelect.addEventListener('change', (event) => {
         giveButton.value = 'Give me ' + (event.target.value.startsWith('Poly') ? 'MATIC' : 'Ether') + '!'
       });
+    toggleButton = document.getElementsByClassName('toggleButton')[0];
+    toggleButton.addEventListener('click', (event) => {
+        const theme = toggleButton.getAttribute('data-theme');
+        toggleButton.setAttribute('data-theme', (theme === 'light' ? 'dark' : 'light'));
+        if(theme === 'light'){
+            document.getElementById('darkCss').setAttribute('rel', 'stylesheet');
+            document.getElementById('lightCss').setAttribute('rel', 'alternate stylesheet');
+        }
+        else{
+            document.getElementById('darkCss').setAttribute('rel', 'alternate stylesheet');
+            document.getElementById('lightCss').setAttribute('rel', 'stylesheet');
+        }
+        });
 });
 
 

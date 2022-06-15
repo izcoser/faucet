@@ -6,8 +6,16 @@
     {% load static %}
     <script src="{% static 'faucet/js/main.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'faucet/css/style.css' %}">
+    <link id="darkCss" rel="alternate stylesheet" type="text/css" href="{% static 'faucet/css/dark.css' %}">
+    <link id="lightCss" rel="stylesheet" type="text/css" href="{% static 'faucet/css/light.css' %}">
+    <link rel="stylesheet" href="{% static 'faucet/css/fontawesome.min.css' %}">
+    <link rel="stylesheet" href="{% static 'faucet/css/solid.min.css' %}">
+
   </head>
   <body>
+    <div class="toggleButton" data-theme="light">
+      <i class="fa-solid fa-moon"></i>
+    </div>
     <div class="container">
       <div class="greeting">
        faucet name
