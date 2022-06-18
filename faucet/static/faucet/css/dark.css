@@ -28,8 +28,11 @@ a {
     color: cornflowerblue;
 }
 
-.toggleButton{
-    color: #ccc;
+.bar{
     background-color: #331712;
     border: 2px solid #c6947b;
+}
+
+.toggleButton, .faq{
+    color: #ccc;
 }

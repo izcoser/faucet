@@ -13,6 +13,8 @@ body {
 .container{
     margin: 60px 0;
     text-align: center;
+    display: flex;
+    flex-direction: column;
 }
 
 .greeting{
@@ -68,4 +70,19 @@ a {
 
 .toggleButton:hover{
     cursor: pointer;
+}
+
+#ethIcon{
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    right: 50%;
+    font-size: 5em;
+}
+
+.bar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50px;
 }

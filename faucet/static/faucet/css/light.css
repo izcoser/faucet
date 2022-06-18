@@ -1,5 +1,5 @@
 body {
-    background-attachment: fixed;
+    background-attachment: fixed, fixed;
     background-color: #f7f7f7;
     background-image: url('../backgrounds/bg2.png');
     background-position: top left;
@@ -28,8 +28,11 @@ a {
     color: cornflowerblue;
 }
 
-.toggleButton{
-    color: #333;;
+.bar{
     background-color: #cce8ed;
     border: 2px solid #396b84;
+}
+
+.toggleButton, .faq{
+    color: #333;
 }

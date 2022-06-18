@@ -13,8 +13,14 @@ chainIds = {'ropsten': 3, 'rinkeby': 4, 'goerli': 5, 'kovan': 42, 'polygon-mumba
 PK = getattr(settings, "PK", None)
 FROM_ADDRESS = getattr(settings, "FROM_ADDRESS", None)
 
+def get_style(request):
+    try:
+        return request.COOKIES['style']
+    except KeyError:
+        return 'light'
+
 def index(request):
-    return render(request, 'faucet/index.html')
+    return render(request, 'faucet/index.html', {'style': get_style(request)})
 
 def send_eth(request):
     if request.method != 'POST':

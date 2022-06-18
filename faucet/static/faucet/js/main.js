@@ -4,20 +4,25 @@ document.addEventListener("DOMContentLoaded", function (event) {
     const networkSelect = document.getElementById('network');
     networkSelect.addEventListener('change', (event) => {
         giveButton.value = 'Give me ' + (event.target.value.startsWith('Poly') ? 'MATIC' : 'Ether') + '!'
-      });
+    });
     toggleButton = document.getElementsByClassName('toggleButton')[0];
+    toggleIcon = document.getElementById('toggleIcon');
     toggleButton.addEventListener('click', (event) => {
         const theme = toggleButton.getAttribute('data-theme');
         toggleButton.setAttribute('data-theme', (theme === 'light' ? 'dark' : 'light'));
         if(theme === 'light'){
             document.getElementById('darkCss').setAttribute('rel', 'stylesheet');
             document.getElementById('lightCss').setAttribute('rel', 'alternate stylesheet');
+            toggleIcon.setAttribute('class', 'fa-solid fa-sun');
+            document.cookie = 'style=dark; expires=Tue, 31 Dec 2031 23:59:59 GMT; path=/;' + (window.location.protocol === 'https:' ? 'secure' : '');
         }
         else{
             document.getElementById('darkCss').setAttribute('rel', 'alternate stylesheet');
             document.getElementById('lightCss').setAttribute('rel', 'stylesheet');
+            toggleIcon.setAttribute('class', 'fa-solid fa-moon');
+            document.cookie = 'style=light; expires=Tue, 31 Dec 2031 23:59:59 GMT; path=/;' + (window.location.protocol === 'https:' ? 'secure' : '');
         }
-        });
+    });
 });
 
 
@@ -128,4 +133,23 @@ function getCookie(name) {
         }
     }
     return cookieValue;
+}
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+function getStyle(){
+    return getCookie('style') || 'light';
 }

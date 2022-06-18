@@ -2,25 +2,33 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>don't know what to name this</title>
+    <title>Mega Milk's Testnet Faucet</title>
     {% load static %}
     <script src="{% static 'faucet/js/main.js' %}"></script>
     <link rel="stylesheet" type="text/css" href="{% static 'faucet/css/style.css' %}">
-    <link id="darkCss" rel="alternate stylesheet" type="text/css" href="{% static 'faucet/css/dark.css' %}">
-    <link id="lightCss" rel="stylesheet" type="text/css" href="{% static 'faucet/css/light.css' %}">
+    <link id="darkCss" rel="{% if style == 'light' %}alternate {% endif %}stylesheet" type="text/css" href="{% static 'faucet/css/dark.css' %}">
+    <link id="lightCss" rel="{% if style == 'dark' %}alternate {% endif %}stylesheet" type="text/css" href="{% static 'faucet/css/light.css' %}">
     <link rel="stylesheet" href="{% static 'faucet/css/fontawesome.min.css' %}">
-    <link rel="stylesheet" href="{% static 'faucet/css/solid.min.css' %}">
+    <link rel="stylesheet" href="{% static 'faucet/css/all.min.css' %}">
 
   </head>
   <body>
-    <div class="toggleButton" data-theme="light">
-      <i class="fa-solid fa-moon"></i>
+    <div class="bar">
+      <div class="toggleButton" data-theme={{style}}>
+        <i id="toggleIcon" class="fa-solid {% if style == 'light' %}fa-moon{% else %}fa-sun{% endif %}"></i>
+      </div>
+      <div class="faq">
+        <i class="fa-solid fa-circle-question" title="This is a simple faucet for Ethereum developers.
+It provides free coins for several testnets.
+No need for social media or proof of work."></i>
+      </div>
     </div>
     <div class="container">
       <div class="greeting">
-       faucet name
+        Mega Milk's Testnet Faucet <i class="fa-solid fa-cow"></i>
       </div>
-      <input type="text" placeholder="Your Ethereum address goes here." id="to_address">
+      <div class="faucetFields">
+        <input type="text" placeholder="Your Ethereum address goes here." id="to_address">
       <select name="network" id="network">
         <option value="Görli">Görli</option>
         <option value="Kovan">Kovan</option>
@@ -28,8 +36,10 @@
         <option value="Ropsten">Ropsten</option>
         <option value="Polygon">Polygon</option>
       </select>
-      <input type="button" name="give" value="Give me Ether!" onclick="sendEth()">  
+      <input type="button" name="give" value="Give me Ether!" onclick="sendEth()">
+      </div>
     </div>
+    <div id="ethIcon"><i class="fa-brands fa-ethereum"></i></div>
     {% csrf_token %}
   </body>
 </html>
