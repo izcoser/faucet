@@ -1,26 +1,35 @@
+:root{
+    --body-bg: #080808;
+    --text-color: #ccc;
+    --input-bg: #111111;
+    --response-bg: #331712;
+    --response-border: #c6947b;
+}
+
 body {
     background-attachment: fixed;
-    background-color: #080808;
+    background-color: var(--body-bg);
     background-image: url('../backgrounds/bgdark.png');
     background-position: top left;
     background-repeat: repeat;
-    color: #ccc;
+    color: var(--text-color);
+    transition: all ease 0.5s;
 }
 
 input, select {
-    background-color: #111111;
-    border-color: #ccc;
+    background-color: var(--input-bg);
+    border-color: var(--text-color);
     border: groove;
-    color: #ccc;
+    color: var(--text-color);
 }
 
 .response {
-    background-color: #331712;
-    border: 2px solid #c6947b;
+    background-color: var(--response-bg);
+    border: 2px solid var(--response-border);
 }
 
 .responseBar{
-    background-color: #ccc;
+    background-color: var(--text-color);
 }
 
 a {
@@ -29,10 +38,10 @@ a {
 }
 
 .bar{
-    background-color: #331712;
-    border: 2px solid #c6947b;
+    background-color: var(--response-bg);
+    border: 2px solid var(--response-border);
 }
 
 .toggleButton, .faq{
-    color: #ccc;
+    color: var(--text-color);
 }
